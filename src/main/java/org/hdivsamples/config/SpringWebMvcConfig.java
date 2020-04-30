@@ -17,6 +17,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 
+	@Autowired
+	@Qualifier("hdivEditableValidator")
+	private Validator hdivEditableValidator;
+
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -33,7 +37,7 @@ public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 	// Multipart integration
 	@Bean
 	public MultipartResolver multipartResolver() {
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		HdivCommonsMultipartResolver resolver = new HdivCommonsMultipartResolver();
 		resolver.setMaxUploadSize(500000);
 		return resolver;
 	}
@@ -46,5 +50,6 @@ public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 		ret.setUseCodeAsDefaultMessage(true);
 		ret.setDefaultEncoding("utf-8");
 		return ret;
+
 	}
 }
