@@ -1,12 +1,10 @@
 package org.hdivsamples.config;
 
-import org.hdiv.web.multipart.HdivCommonsMultipartResolver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.Validator;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -44,9 +42,14 @@ public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	// Enable Hdiv Editable field (form text and textarea) validation
-	@Override
-	public Validator getValidator() {
-		return hdivEditableValidator;
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource ret = new ReloadableResourceBundleMessageSource();
+		ret.setBasename("classpath:i18n/messages");
+		ret.setCacheSeconds(1);
+		ret.setUseCodeAsDefaultMessage(true);
+		ret.setDefaultEncoding("utf-8");
+		return ret;
+
 	}
 }

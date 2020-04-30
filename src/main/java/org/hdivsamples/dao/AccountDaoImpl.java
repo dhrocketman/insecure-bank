@@ -37,7 +37,8 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public List<Account> findUsersByUsername(final String username) {
-		String str = "select * from account where username='" + username + "'";
+
+		String str = "select * from account where username=?";
 
 		RowMapper<Account> rowMapper = new RowMapper<Account>() {
 			@Override
@@ -51,7 +52,14 @@ public class AccountDaoImpl implements AccountDao {
 			}
 		};
 
-		return jdbcTemplate.query(str, rowMapper);
+		return jdbcTemplate.query(str, new Object[] { username }, rowMapper);
+	}
+
+	@Override
+	public String findAccountNameByUsername(final String username) {
+		String str = "select name from account where username='" + username + "' LIMIT 1";
+
+		return jdbcTemplate.queryForObject(str, String.class);
 	}
 
 	@Override
