@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.hdiv</groupId>
@@ -9,7 +10,7 @@
 
 	<properties>
 		<org.springframework-version>4.2.3.RELEASE</org.springframework-version>
-		<org.spring-security-version>4.0.3.RELEASE</org.spring-security-version>
+		<org.spring-security-version>5.2.0.RELEASE</org.spring-security-version>
 		<org.slf4j-version>1.7.13</org.slf4j-version>
 		<hdiv-ee-version>1.10.0</hdiv-ee-version>
 	</properties>
@@ -197,16 +198,20 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>${org.spring-security-version}</version>
 		</dependency>
-		<!-- Hdiv -->
+
+
+		<!-- Testing -->
 		<dependency>
-			<groupId>org.hdiv.ee</groupId>
-			<artifactId>hdiv-ee-config</artifactId>
-			<version>${hdiv-ee-version}</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.hdiv.ee</groupId>
-			<artifactId>hdiv-ee-spring-mvc</artifactId>
-			<version>${hdiv-ee-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
